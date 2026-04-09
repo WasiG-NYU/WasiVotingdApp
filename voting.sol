@@ -33,3 +33,12 @@ function addCandidate(string memory _name) public onlyOwner {
     candidatesCount++;
     candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
 }
+
+// Voting function 
+    function vote(uint _candidateId) public {
+        require(block.timestamp < votingEnd, "Voting time has ended.");
+        require(!hasVoted[msg.sender], "You have already voted!");
+        require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid candidate.");
+        hasVoted[msg.sender] = true; 
+        candidates[_candidateId].voteCount++;
+    }
