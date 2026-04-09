@@ -21,3 +21,15 @@ constructor(uint _durationMin) {
     owner = msg.sender; 
     votingEnd = block.timestamp + (_durationMin * 1 minutes);
 }
+
+// Only the owner can add cadidates
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this!");
+        _; 
+}
+
+// Add a candidate
+function addCandidate(string memory _name) public onlyOwner {
+    candidatesCount++;
+    candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+}
