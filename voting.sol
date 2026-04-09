@@ -11,4 +11,13 @@ contract MyVoting {
 }
 
 address public owner;
-mapping (uint => Candiate)
+mapping (uint => Candiate) public candidates; 
+mapping (address => bool) public hasVotes; 
+uint public candidatesCount; 
+uint public votingEnd; 
+
+// Sets the owner and voting duration 
+constructor(uint _durationMin) {
+    owner = msg.sender; 
+    votingEnd = block.timestamp + (_durationMin * 1 minutes);
+}

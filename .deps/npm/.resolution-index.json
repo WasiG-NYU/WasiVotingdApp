@@ -2,7 +2,7 @@
   "voting.sol": {
     "__sources__": {
       "voting.sol": {
-        "content": "// SPDX-License-Identifier: MIT \r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract MyVoting {\r\n    struct Candidate {\r\n        uint id; \r\n        string name; \r\n        uint voteCount;\r\n    }\r\n}\r\n\r\naddress public owner;\r\nmapping (uint => Candiate)",
+        "content": "// SPDX-License-Identifier: MIT \r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract MyVoting {\r\n    struct Candidate {\r\n        uint id; \r\n        string name; \r\n        uint voteCount;\r\n    }\r\n}\r\n\r\naddress public owner;\r\nmapping (uint => Candiate) public candidates; \r\nmapping (address => bool) public hasVotes; \r\nuint public candidatesCount; \r\nuint public votingEnd; \r\n\r\n// Sets the owner and voting duration \r\nconstructor(uint _durationMin) {\r\n    owner = msg.sender; \r\n    votingEnd = block.timestamp + (_durationMin * 1 minutes);\r\n}",
         "file": "voting.sol"
       }
     }
