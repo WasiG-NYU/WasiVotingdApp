@@ -3,38 +3,38 @@
 pragma solidity ^0.8.0;
 
 contract MyVoting {
+
     struct Candidate {
         uint id; 
         string name; 
         uint voteCount;
     }
-}
 
-address public owner;
-mapping (uint => Candiate) public candidates; 
-mapping (address => bool) public hasVotes; 
-uint public candidatesCount; 
-uint public votingEnd; 
+    address public owner;
+    mapping (uint => Candidate) public candidates; 
+    mapping (address => bool) public hasVoted; 
+    uint public candidatesCount; 
+    uint public votingEnd; 
 
-// Sets the owner and voting duration 
-constructor(uint _durationMin) {
-    owner = msg.sender; 
-    votingEnd = block.timestamp + (_durationMin * 1 minutes);
-}
+    // Sets the owner and voting duration 
+    constructor(uint _durationMin) {
+        owner = msg.sender; 
+        votingEnd = block.timestamp + (_durationMin * 1 minutes);
+    }
 
-// Only the owner can add cadidates
+    // Only the owner can add cadidates
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can call this!");
         _; 
-}
+    }
 
-// Add a candidate
-function addCandidate(string memory _name) public onlyOwner {
-    candidatesCount++;
-    candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
-}
+    // Add a candidate
+    function addCandidate(string memory _name) public onlyOwner {
+        candidatesCount++;
+        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+    }
 
-// Voting function 
+    // Voting function 
     function vote(uint _candidateId) public {
         require(block.timestamp < votingEnd, "Voting time has ended.");
         require(!hasVoted[msg.sender], "You have already voted!");
@@ -42,3 +42,4 @@ function addCandidate(string memory _name) public onlyOwner {
         hasVoted[msg.sender] = true; 
         candidates[_candidateId].voteCount++;
     }
+}
