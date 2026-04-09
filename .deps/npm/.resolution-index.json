@@ -1,0 +1,10 @@
+{
+  "voting.sol": {
+    "__sources__": {
+      "voting.sol": {
+        "content": "// SPDX-License-Identifier: MIT \r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract MyVoting {\r\n    struct Candidate {\r\n        uint id; \r\n        string name; \r\n        uint voteCount;\r\n    }\r\n}\r\n\r\naddress public owner;\r\nmapping (uint => Candiate)",
+        "file": "voting.sol"
+      }
+    }
+  }
+}
