@@ -2,12 +2,13 @@
 
 pragma solidity ^0.8.0;
 
-contract MyVoting {
+contract MyVoting { // Define the smart contract 
 
+    // Represents the data structure for a candidate 
     struct Candidate {
-        uint id; 
-        string name; 
-        uint voteCount;
+        uint id; // unique id of the candidate
+        string name; // name of the candidate
+        uint voteCount; // number of votes the candidate has recived
     }
 
     address public owner;
