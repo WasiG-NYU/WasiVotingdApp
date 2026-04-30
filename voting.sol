@@ -11,15 +11,15 @@ contract MyVoting { // Define the smart contract
         uint voteCount; // number of votes the candidate has recived
     }
 
-    address public owner;
-    mapping (uint => Candidate) public candidates; 
-    mapping (address => bool) public hasVoted; 
-    uint public candidatesCount; 
-    uint public votingEnd; 
+    address public owner; // Stores address of the contract owner (deployer)
+    mapping (uint => Candidate) public candidates; // Maps a candidate ID to a Candidate struct
+    mapping (address => bool) public hasVoted; // Tracks whether an address has already votes which prevents double voiting =
+    uint public candidatesCount; // Stores the total number of candidates
+    uint public votingEnd; // Stores the timestamp when voting ends
 
     // Sets the owner and voting duration 
     constructor(uint _durationMin) {
-        owner = msg.sender; 
+        owner = msg.sender;
         votingEnd = block.timestamp + (_durationMin * 1 minutes);
     }
 
