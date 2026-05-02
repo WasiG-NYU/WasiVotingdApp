@@ -46,4 +46,9 @@ contract MyVoting { // Define the smart contract
         hasVoted[msg.sender] = true; // Marks sender has having voted
         candidates[_candidateId].voteCount++; // Increments the vote count for selected candidate
     }
+
+    // Manually end the voting
+    function endVoting() public onlyOwner {
+        votingEnd = block.timestamp;
+    }
 }
